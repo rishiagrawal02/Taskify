@@ -1,0 +1,119 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+.task-form input,
+.task-form select,
+.task-form button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.task-form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.task-list li.completed span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.actions a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.delete {
+    color: red;
+}
+
+.logout {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #555;
+    text-decoration: none;
+}
+
+/* For tablets and smaller devices */
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Make the container take full width */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .task-form {
+        flex-direction: column; /* Stack form fields vertically */
+    }
+
+    .task-form input,
+    .task-form select,
+    .task-form button {
+        width: 100%; /* Make form elements take full width */
+        margin-bottom: 10px; /* Add spacing between elements */
+    }
+
+    .task-list li {
+        flex-direction: column; /* Stack task details vertically */
+        align-items: flex-start;
+    }
+
+    .actions {
+        margin-top: 10px; /* Add spacing between task details and actions */
+        align-self: flex-end;
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 576px) {
+    h1, h2 {
+        font-size: 18px; /* Reduce font size for headings */
+    }
+
+    .task-list li {
+        padding: 10px; /* Reduce padding for tasks */
+    }
+
+    .task-form input,
+    .task-form select,
+    .task-form button {
+        font-size: 14px; /* Reduce font size for form elements */
+    }
+}

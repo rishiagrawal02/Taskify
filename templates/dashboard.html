@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Taskify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ current_user.username }}</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('add_task') }}" method="POST" class="task-form">
+            <input type="text" name="task_text" placeholder="Task description" required>
+            <input type="date" name="due_date" required>
+            <select name="priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+            <input type="text" name="category" placeholder="Category" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <h2>Your Tasks</h2>
+        <ul class="task-list">
+            {% for task in tasks %}
+                <li class="{{ 'completed' if task.completed else '' }}">
+                    <span><strong>{{ task.text }}</strong> — {{ task.due_date }} | {{ task.priority }} | {{ task.category }}</span>
+                    <div class="actions">
+                        <a href="{{ url_for('toggle_complete', task_id=task.id) }}">
+                            {% if task.completed %}✅{% else %}☑️{% endif %}
+                        </a>
+                        <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete">❌</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </div>
+</body>
+</html>
